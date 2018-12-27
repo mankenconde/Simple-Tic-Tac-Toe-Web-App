@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>tic tac toe</title>
+
+	<style type="text/css">
+
+		td{
+			width:100px;
+			height:100px;
+		}
+		
+		.vertical{
+
+			border-left:1px solid black;
+			border-right:1px solid black;
+		}
+
+		.horizontal{
+			border-bottom:1px solid black;
+			border-top:1px solid black;
+		}
+
+		table{
+			margin:auto;
+		}
+
+		/*h1{
+			text-align:center;
+		}*/
+
+	/*	td{
+			text-align: center;
+		}*/
+
+		body{
+			text-align: center;
+		}
+
+		#reset{
+			margin:30px;
+			background-color:black;
+			color:white;
+			padding:10px;
+		}
+
+	</style>
+
+
+	<script type="text/javascript">
+
+		var player=1;
+
+		function select(id){
+			var selected_id= id;
+			
+
+			if(player%2==0){
+
+			document.getElementById(selected_id).innerHTML="X"
+			document.querySelector("table").style.fontSize="50px";
+
+			}
+
+			else{
+				document.getElementById(selected_id).innerHTML="O";
+			document.querySelector("table").style.fontSize="50px";
+
+			}
+					player=player+1;
+				}
+
+		function clear(){
+			//location.reload(false); //reloads the page and clears content of the table but This might not be the best way to clear content
+
+			document.getElementById("board").innerHTML="";
+		}
+
+	</script>
+
+</head>
+<body>
+
+<h1>Tic Tac Toe</h1>
+
+<table id="table">
+	
+	<div id="board">
+	<tr>
+
+		<td id="one">
+			
+			<button id="one" type="button" onclick="select(this.id)">select</button>
+		</td>
+		<td id="two" class="vertical">
+			<button id="two" type="button" onclick="select(this.id)">select</button>
+		</td>
+		<td id="three">
+			<button id="three" type="button" onclick="select(this.id)">select</button>
+		</td>
+	</tr>
+	<tr>
+		<td id="four" class="horizontal">
+			<button id="four" type="button" onclick="select(this.id)">select</button>
+		</td>
+		<td id="five" class="vertical horizontal">
+			<button id="five" type="button" onclick="select(this.id)">select</button>
+		</td>
+		<td id="six" class="horizontal">
+			<button id="six"  type="button" onclick="select(this.id)">select</button>
+		</td>
+	</tr>
+	<tr>
+		<td id="seven">
+			<button id="seven" type="button" onclick="select(this.id)">select</button>
+		</td>
+		<td id="eight" class="vertical">
+			<button id="eight" type="button" onclick="select(this.id)">select</button>
+		</td>
+		<td id="nine">
+			<button id="nine" type="button" onclick="select(this.id)">select</button>
+		</td>
+	</tr>
+</div>
+
+<div class="button">
+	<button id="reset" type="button" onclick="clear()">Reset</button>
+	</div>
+
+</table>
+
+
+
+</body>
+</html>
