@@ -14,40 +14,9 @@ let origBoard;
         
 		let player= false;
 
-		function select(id){
-			let selected_id= id;
-			
-
-			if(player%2==0){
-
-			document.getElementById(selected_id).innerHTML="X"
-			document.querySelector("table").style.fontSize="50px";
-
-			}
-
-			else{
-				document.getElementById(selected_id).innerHTML="O";
-			document.querySelector("table").style.fontSize="50px";
-
-			}
-					player=player+1;
-				}
-
 
          const cells=document.querySelectorAll(".block");
-    
-         startGame();
-
-        function startGame(){
-			document.querySelector(".endGame").style.display="none";
-			origBoard=Array.from(Array(9).keys());
-			for(let i=0; i<cells.length; i++){
-				cells[i].innerText='';
-				cells[i].style.removeProperty('background-color');
-                cells[i].addEventListener('click',turnClick,false);
-                console.log(cells[i]);
-			}
-        }
+			
 
 		function turnClick(square){
 			
@@ -65,13 +34,18 @@ let origBoard;
                 checkForWin[square.target.id]=2;
 			}
             
-            let win = Win();
-            if(win != false){
-                alert("Winner is Player " + win);
+            if(Win()){
+				// alert("Winner is Player " + win);
+				// console.log(winner);
+				// document.getElementById("4").innerHTML="GAME OVER!";
+				document.querySelector(".endGame").style.visibility="visible";
+				document.querySelector(".winner").innerHTML="Player #"+winner+" Won!";
             }
 
             player=!player;
 		}
+
+		let winner;
 
         function Win(){
             
@@ -80,10 +54,25 @@ let origBoard;
                     if(checkForWin[winCombos[j][k]]==checkForWin[winCombos[j][k+1]] 
                         && checkForWin[winCombos[j][k+1]]==checkForWin[winCombos[j][k+2]] 
                         && checkForWin[winCombos[j][k]] != 0){
-                        document.querySelector(".endGame").style.display="absolute";
-                        return checkForWin[winCombos[j][k]];
+						winner = checkForWin[winCombos[j][k]];
+                        return true;
                     }
                 }
             }
             return false;
+		}
+		
+		startGame();
+
+        function startGame(){
+			// document.querySelector(".endGame").style.display="absolute";
+			origBoard=Array.from(Array(9).keys());
+			for(let i=0; i<cells.length; i++){
+				cells[i].innerText='';
+				cells[i].style.removeProperty('background-color');
+				cells[i].addEventListener('click',turnClick,false);
+				document.querySelector(".endGame").style.visibility="hidden";
+				document.querySelector(".winner").innerHTML="";
+				checkForWin=[0,0,0,0,0,0,0,0,0];
+			}
         }
